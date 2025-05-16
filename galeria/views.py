@@ -22,6 +22,7 @@ def imagem(request, image_id):
     }
     return render(request, "galeria/imagem.html", context)
 
+
 def search(request):
 
     context = {
@@ -32,9 +33,33 @@ def search(request):
     if 'search' in request.GET:
         search = request.GET['search'].strip()
         if search:
-            context['cards'] = Photograph.objects.filter(name__icontains=search).order_by('-created_at').filter(published=True)
+            context['cards'] = Photograph.objects.filter(
+                name__icontains=search).order_by('-created_at').filter(published=True)
             context['search'] = search
         else:
-            context['cards'] = Photograph.objects.order_by('-created_at').filter(published=True)
+            context['cards'] = Photograph.objects.order_by(
+                '-created_at').filter(published=True)
 
     return render(request, 'galeria/search.html', context)
+
+
+def filter(request):
+
+    context = {
+        "title": "Alura Space - Galeria",
+        "cards": Photograph.objects.order_by('-created_at').filter(published=True)
+    }
+
+    if 'filter' in request.GET:
+        filter = request.GET['filter'].strip()
+        print(filter)
+        if filter:
+            context['cards'] = Photograph.objects.filter(
+                category__icontains=filter).order_by('-created_at').filter(published=True)
+            context['filter'] = filter
+            print(filter)
+        else:
+            context['cards'] = Photograph.objects.order_by(
+                '-created_at').filter(published=True)
+
+    return render(request, 'galeria/filter.html', context)

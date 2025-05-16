@@ -15,7 +15,7 @@
                     <img class="card__imagem" src="{{ photograph.image.url }}" alt="foto">
                     {% endif %}
                 </a>
-                <span class="card__tag">Estrelas</span>
+                <span class="card__tag">{{ photograph.category }}</span>
                 <div class="card__info">
                     <p class="card__titulo">{{ photograph.name }}</p>
                     <div class="card__texto">

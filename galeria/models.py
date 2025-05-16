@@ -6,7 +6,7 @@ class Photograph(models.Model):
     OPTIONS_CATEGORY = (
         ("NEBULOSA", "Nebulosa"),
         ("ESTRELA", "Estrela"),
-        ("GALAXIA", "Galáxia"),
+        ("GALÁXIA", "Galáxia"),
         ("PLANETA", "Planeta")
     )
 
